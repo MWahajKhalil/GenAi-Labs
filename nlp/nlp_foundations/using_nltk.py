@@ -11,6 +11,8 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk.corpus import stopwords
 nltk.download('punkt')
 nltk.download('punkt_tab')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 
 def tokenization(paragraph):
@@ -53,8 +55,21 @@ stemmer = PorterStemmer()
 for i in range(len(corpus)):
     stemmed_word = []
     for word in corpus[i].split():
-        stemmed_word.append(stemmer.stem(word))
+        if word not in stopwords.words('english'):
+            stemmed_word.append(stemmer.stem(word))
     print(stemmed_word) 
+
+
+
+
+#lemmitization
+for i in range(len(corpus)):
+    lemma_word = []
+    words = nltk.word_tokenize(corpus[i])
+    for word in words:
+        if word not in stopwords.words('english'):
+            lemma_word.append(lemmatizer.lemmatize(word))
+    print(lemma_word)
 
 
 
