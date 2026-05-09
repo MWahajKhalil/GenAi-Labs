@@ -57,12 +57,13 @@ for i in range(len(corpus)):
     for word in corpus[i].split():
         if word not in stopwords.words('english'):
             stemmed_word.append(stemmer.stem(word))
-    print(stemmed_word) 
+    
 
 
 
 
 #lemmitization
+lemmatizer = WordNetLemmatizer()
 for i in range(len(corpus)):
     lemma_word = []
     words = nltk.word_tokenize(corpus[i])
@@ -70,7 +71,18 @@ for i in range(len(corpus)):
         if word not in stopwords.words('english'):
             lemma_word.append(lemmatizer.lemmatize(word))
     print(lemma_word)
+    
 
 
+
+
+#bag of words
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer()
+x = cv.fit_transform(corpus)
+
+print(cv.vocabulary_)
+print("\n\n")
+print(x[0].toarray())
 
 
