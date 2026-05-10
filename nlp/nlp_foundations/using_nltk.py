@@ -86,3 +86,10 @@ print("\n\n")
 print(x[0].toarray())
 
 
+
+# TF-IDF
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf = TfidfVectorizer()
+y = tfidf.fit_transform(corpus)
+print("\n\n")
+print(y.toarray())
