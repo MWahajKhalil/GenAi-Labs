@@ -7,9 +7,9 @@ paragraph = """Born in Lahore, he graduated from Keble College, Oxford. He began
 
 #-----tokenization-----
 import nltk
-from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
-nltk.download('punkt')
+nltk.download('punkt') 
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 nltk.download('wordnet')
@@ -83,7 +83,7 @@ x = cv.fit_transform(corpus)
 
 print(cv.vocabulary_)
 print("\n\n")
-print(x[0].toarray())
+print(x.toarray())
 
 
 
@@ -93,3 +93,17 @@ tfidf = TfidfVectorizer()
 y = tfidf.fit_transform(corpus)
 print("\n\n")
 print(y.toarray())
+
+
+#Text similarity using cosine similarity
+import numpy as np
+
+def cosine_similarity(vector1, vector2):
+    dot_product = np.dot(vector1, vector2)
+    norm_vector1 = np.linalg.norm(vector1)
+    norm_vector2 = np.linalg.norm(vector2)
+    return dot_product / (norm_vector1 * norm_vector2)
+
+# Compare the first sentence (index 0) and the second sentence (index 1)
+print("\nCosine Similarity (Sentence 1 vs Sentence 2):")
+print(cosine_similarity(y.toarray()[0], y.toarray()[1]))
