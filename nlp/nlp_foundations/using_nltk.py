@@ -148,3 +148,31 @@ def generate_cbow_data(corpus_data, window_size=2):
 cbow_pairs = generate_cbow_data(corpus, window_size=2)
 for pair in cbow_pairs[:5]:
     print(f"Context: {pair[0]} -> Target: {pair[1]}")
+
+
+# --- SKIP-GRAM ---
+def generate_skipgram_data(corpus_data, window_size=2):
+    """
+    Generate Skip-Gram training data.
+    Takes a list of sentences (where each sentence is a string) and window_size.
+    Returns pairs of (target_word, context_word).
+    """
+    skipgram_data = []
+    for sentence in corpus_data:
+        # Tokenize the sentence into words
+        words = nltk.word_tokenize(sentence) if isinstance(sentence, str) else sentence
+        
+        for i, target in enumerate(words):
+            # Previous words (window_size before)
+            for j in range(max(0, i - window_size), i):
+                skipgram_data.append((target, words[j]))
+            # Next words (window_size after)
+            for j in range(i + 1, min(len(words), i + window_size + 1)):
+                skipgram_data.append((target, words[j]))
+            
+    return skipgram_data
+
+print("\n--- Skip-Gram Data (first 5 pairs) ---")
+skipgram_pairs = generate_skipgram_data(corpus, window_size=2)
+for pair in skipgram_pairs[:5]:
+    print(f"Target: {pair[0]} -> Context Word: {pair[1]}")
