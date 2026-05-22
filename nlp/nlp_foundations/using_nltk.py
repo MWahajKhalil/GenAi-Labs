@@ -176,3 +176,19 @@ print("\n--- Skip-Gram Data (first 5 pairs) ---")
 skipgram_pairs = generate_skipgram_data(corpus, window_size=2)
 for pair in skipgram_pairs[:5]:
     print(f"Target: {pair[0]} -> Context Word: {pair[1]}")
+
+
+#N GRAM
+def generate_ngrams(corpus_data, n=3):
+    ngrams = []
+    for sentence in corpus_data:
+        words = nltk.word_tokenize(sentence)
+        for i in range(len(words) - n + 1):
+            ngrams.append(tuple(words[i:i+n]))
+    return ngrams
+
+print("\n--- N-grams (n=3) ---")
+n_grams = generate_ngrams(corpus, n=3)
+for gram in n_grams[:5]:
+    print(gram)
+
