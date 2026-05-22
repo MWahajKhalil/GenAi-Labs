@@ -93,38 +93,14 @@ def lemmatize(text):
 
 
 
-# Bag of Words (BoW) is a way to represent text as numbers.
-# It creates a vocabulary of all unique words and counts how many times each word appears.
-
-def create_bow(text):
-    # First, we clean the text using our lemmatize function
-    cleaned_words = lemmatize(text)
-    
-    # Create an empty dictionary to hold our word counts
-    bow = {}
-    
-    # Count the frequency of each word
-    for word in cleaned_words:
-        # Convert to lowercase to ensure consistency
-        word = word.lower()
-        if word in bow:
-            bow[word] += 1
-        else:
-            bow[word] = 1
-            
-    return bow
-
-
-input_text = input("Enter the Text to process (Stemming, Lemmatization, and BoW): ")
+input_text = input("Enter the Text to get Stemming and Lemmatization: ")
 
 final_text_stemmed = stemming(input_text)
-print("\n--- Stemmed ---")
-print(final_text_stemmed)
+print("Stemmed:", final_text_stemmed)
 
 final_text_lemmatized = lemmatize(input_text)
-print("\n--- Lemmatized ---")
-print(final_text_lemmatized)
+print("Lemmatized:", final_text_lemmatized)
 
-bow_result = create_bow(input_text)
-print("\n--- Bag of Words (BoW) ---")
-print(bow_result)
+
+##
+

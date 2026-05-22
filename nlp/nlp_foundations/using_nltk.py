@@ -104,6 +104,47 @@ def cosine_similarity(vector1, vector2):
     norm_vector2 = np.linalg.norm(vector2)
     return dot_product / (norm_vector1 * norm_vector2)
 
-# Compare the first sentence (index 0) and the second sentence (index 1)
+# Compareing the first sentence (i = 0) and the second sentence (i= 1)
 print("\nCosine Similarity (Sentence 1 vs Sentence 2):")
 print(cosine_similarity(y.toarray()[0], y.toarray()[1]))
+
+
+#Word embeddings
+import pandas as pd
+from gensim.models import Word2Vec
+from sklearn.manifold import TSNE
+
+model = Word2Vec(sentences=corpus, vector_size=100, window=5, min_count=1, workers=4)
+
+print(model.wv.similarity('imran', 'khan'))
+
+
+
+#CONTINOUS BAG OF WORDs
+def generate_cbow_data(corpus_data, window_size=2):
+    """
+    Generate Continuous Bag of Words (CBOW) training data.
+    Takes a list of sentences (where each sentence is a string) and window_size.
+    Returns pairs of (context_words, target_word).
+    """
+    cbow_data = []
+    for sentence in corpus_data:
+        # Tokenize the sentence into words
+        words = nltk.word_tokenize(sentence) if isinstance(sentence, str) else sentence
+        
+        for i, target in enumerate(words):
+            context = []
+            # Previous words (window_size before)
+            for j in range(max(0, i - window_size), i):
+                context.append(words[j])
+            # Next words (window_size after)
+            for j in range(i + 1, min(len(words), i + window_size + 1)):
+                context.append(words[j])
+            
+            cbow_data.append((context, target))
+    return cbow_data
+
+#generate_cbow_data(corpus)
+cbow_pairs = generate_cbow_data(corpus, window_size=2)
+for pair in cbow_pairs[:5]:
+    print(f"Context: {pair[0]} -> Target: {pair[1]}")
