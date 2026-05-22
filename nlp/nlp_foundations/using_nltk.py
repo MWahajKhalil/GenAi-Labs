@@ -192,3 +192,11 @@ n_grams = generate_ngrams(corpus, n=3)
 for gram in n_grams[:5]:
     print(gram)
 
+
+
+#part of speech tagging
+from nltk import pos_tag
+tokens = nltk.word_tokenize(paragraph)
+pos_tags = pos_tag(tokens)
+print(pos_tags)
+
