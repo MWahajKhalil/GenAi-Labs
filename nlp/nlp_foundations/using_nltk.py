@@ -205,6 +205,15 @@ from nltk import ne_chunk
 named_entities = ne_chunk(pos_tags)
 print(named_entities)   
 
+
+
+
+#dependency parsing
+from nltk.parse import CoreNLPParser
+parser = CoreNLPParser(url='http://localhost:9000')
+sentences = nltk.sent_tokenize(paragraph)
+for sentence in sentences:
+    parse_tree = next(parser.raw_parse(sentence))
+    print(parse_tree)   
+
     
-
-
