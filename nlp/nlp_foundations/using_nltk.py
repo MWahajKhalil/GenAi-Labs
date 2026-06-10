@@ -200,3 +200,11 @@ tokens = nltk.word_tokenize(paragraph)
 pos_tags = pos_tag(tokens)
 print(pos_tags)
 
+#named entity recognition
+from nltk import ne_chunk
+named_entities = ne_chunk(pos_tags)
+print(named_entities)   
+
+    
+
+
