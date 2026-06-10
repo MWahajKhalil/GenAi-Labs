@@ -215,3 +215,12 @@ for sentence in sentences:
     parse_tree = next(parser.raw_parse(sentence))
     print(parse_tree)   
 
+
+#sentiment analysis     
+from nltk.sentiment import SentimentIntensityAnalyzer
+sia = SentimentIntensityAnalyzer()
+sentences = nltk.sent_tokenize(paragraph)
+for sentence in sentences:
+    sentiment = sia.polarity_scores(sentence)
+    print(f"Sentence: {sentence}\nSentiment: {sentiment}\n")    
+
