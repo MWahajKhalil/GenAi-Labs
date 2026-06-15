@@ -233,4 +233,11 @@ def get_words_in_categories(word_list):
     positive_words = ['happy', 'joyful', 'excellent', 'wonderful', 'amazing', 'great', 'good', 'positive']
     negative_words = ['sad', 'unhappy', 'terrible', 'awful', 'bad', 'negative']
     neutral_words = ['the', 'is', 'in', 'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'because', 'as', 'that', 'which', 'this', 'it', 'its', 'to', 'for', 'of', 'on', 'at', 'by', 'with', 'about', 'from', 'into', 'through', 'during', 'before', 'after', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
-                
+    return [word for word in word_list if word.lower() in positive_words + negative_words + neutral_words]
+
+
+def classifier():
+    positive_words = get_words_in_categories(['happy', 'joyful', 'excellent', 'wonderful', 'amazing', 'great', 'good', 'positive'])
+    negative_words = get_words_in_categories(['sad', 'unhappy', 'terrible', 'awful', 'bad', 'negative'])
+    neutral_words = get_words_in_categories(['the', 'is', 'in', 'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'because', 'as', 'that', 'which', 'this', 'it', 'its', 'to', 'for', 'of', 'on', 'at', 'by', 'with', 'about', 'from', 'into', 'through', 'during', 'before', 'after', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now'])
+    return positive_words, negative_words, neutral_words    
