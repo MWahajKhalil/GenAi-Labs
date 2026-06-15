@@ -224,3 +224,13 @@ for sentence in sentences:
     sentiment = sia.polarity_scores(sentence)
     print(f"Sentence: {sentence}\nSentiment: {sentiment}\n")    
 
+#these above code snippets demonstrate various NLP techniques using the NLTK library, including tokenization, stemming, lemmatization, bag of words, TF-IDF, cosine similarity, word embeddings, CBOW and Skip-Gram data generation, n-grams, part of speech tagging, named entity recognition, dependency parsing, and sentiment analysis. Each technique is applied to a sample paragraph about Imran Khan's cricket career
+#all important techniques are covered in this code snippet and it serves as a comprehensive guide for anyone looking to understand and implement NLP techniques using NLTK. REMAINING ARE SOME TECHNIQUES LIKE TOPIC MODELING, LANGUAGE MODELING, MACHINE TRANSLATION, TEXT GENERATION, etc. WHICH CAN BE IMPLEMENTED USING OTHER LIBRARIES LIKE Gensim, Hugging Face Transformers, etc.
+
+
+### Text Classification with NLTK (using Naive Bayes)  
+def get_words_in_categories(word_list):
+    positive_words = ['happy', 'joyful', 'excellent', 'wonderful', 'amazing', 'great', 'good', 'positive']
+    negative_words = ['sad', 'unhappy', 'terrible', 'awful', 'bad', 'negative']
+    neutral_words = ['the', 'is', 'in', 'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'because', 'as', 'that', 'which', 'this', 'it', 'its', 'to', 'for', 'of', 'on', 'at', 'by', 'with', 'about', 'from', 'into', 'through', 'during', 'before', 'after', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
+                
