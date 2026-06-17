@@ -241,3 +241,50 @@ def classifier():
     negative_words = get_words_in_categories(['sad', 'unhappy', 'terrible', 'awful', 'bad', 'negative'])
     neutral_words = get_words_in_categories(['the', 'is', 'in', 'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'because', 'as', 'that', 'which', 'this', 'it', 'its', 'to', 'for', 'of', 'on', 'at', 'by', 'with', 'about', 'from', 'into', 'through', 'during', 'before', 'after', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now'])
     return positive_words, negative_words, neutral_words    
+
+
+
+#text classification
+positive_words, negative_words, neutral_words = classifier()
+
+from nltk.classify import NaiveBayesClassifier
+from nltk.tokenize import word_tokenize
+
+def create_classifier():
+    # Sample training data (you would use a larger, more diverse dataset in practice)
+    training_data = [
+        (['happy', 'joyful', 'excellent', 'wonderful', 'amazing', 'great', 'good', 'positive'], 'positive'),
+        (['sad', 'unhappy', 'terrible', 'awful', 'bad', 'negative'], 'negative'),
+        (['the', 'is', 'in', 'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'because', 'as', 'that', 'which', 'this', 'it', 'its', 'to', 'for', 'of', 'on', 'at', 'by', 'with', 'about', 'from', 'into', 'through', 'during', 'before', 'after', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now'], 'neutral'),
+    ]
+    
+    # Create a Naive Bayes classifier
+    classifier = NaiveBayesClassifier.train(training_data)
+    return classifier
+
+
+
+#text classification example
+classifier = create_classifier()
+text = input("Enter the Text to get Sentiment Analysis: ")
+text_tokenized = word_tokenize(text)
+text_filtered = [word for word in text_tokenized if word.lower() not in stop_words]
+text_stemmed = stemming(text)
+text_lemmatized = lemmatize(text)
+
+#calculate sentiment scores for positive, negative, and neutral words
+positive_score = sum(1 for word in text_stemmed if word.lower() in positive_words)
+negative_score = sum(1 for word in text_stemmed if word.lower() in negative_words)
+neutral_score = sum(1 for word in text_stemmed if word.lower() in neutral_words)
+
+#determine sentiment
+if positive_score > negative_score and positive_score > neutral_score:
+    sentiment = 'positive'
+elif negative_score > positive_score and negative_score > neutral_score:
+    sentiment = 'negative'
+else:
+    sentiment = 'neutral'
+
+print("Sentiment:", sentiment)
+
+
