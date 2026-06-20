@@ -288,3 +288,35 @@ else:
 print("Sentiment:", sentiment)
 
 
+#topic modeling using Gensim
+from gensim import corpora
+from gensim.models import LdaModel
+
+# Sample documents (replace with your actual data)
+documents = [
+    "The cat sat on the mat.",
+    "The dog chased the cat.",
+    "The cat and the dog are friends.",
+    "The weather is sunny today.",
+    "The weather is cloudy today.",
+    "The weather is rainy today.",
+]
+
+# Tokenize and preprocess documents
+tokenized_docs = [word_tokenize(doc.lower()) for doc in documents]
+
+# Create a dictionary from the tokenized documents
+dictionary = corpora.Dictionary(tokenized_docs)
+
+# Create a bag-of-words corpus
+corpus = [dictionary.doc2bow(doc) for doc in tokenized_docs]
+
+# Create an LDA model
+lda_model = LdaModel(corpus, num_topics=2, id2word=dictionary, passes=10)
+
+# Print the topics
+for topic in lda_model.print_topics():
+    print(topic)
+
+
+
